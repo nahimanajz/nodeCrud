@@ -27,20 +27,22 @@ import UserModal from "../model/UserModal";
             role
         } = req.body;
        try {
-           //let user = UserModal.findOne({phone})
-           /*if(user) {
-              return res.status(400).json({msg:'User already registered'});//render('profile',{msg: "User already Exist" });
-                   
-            } */
-           const user = new UserModal({
-                fullnames: req.body.fnames,
-                username: req.body.username,
-                phone: req.body.phone,
-                password: req.body.password,
-                role: req.body.role
+           let user = await UserModal.findOne({phone:phone});
+           if(user) {
+              return res.status(400).render('users',{msg: "User already Exist" });         
+            } 
+                user = new UserModal({
+                    fullnames: req.body.fnames,
+                    username: req.body.username,
+                    phone: req.body.phone,
+                    password: req.body.password,
+                    role: req.body.role
+                });
+             await user.save().then(doc => {
+                        console.log(doc);                 
              });
-             await user.save();
-             return res.status(200).json({ msg: 'User registered' });      
+            const users = await UserModal.find();
+            return res.status(200).render('users',{users:users, msg: 'User registered'});      
        }catch(err){
            console.log(err.message);
            return res.status(500).json({ msg:'Error in saving user'});     
@@ -48,5 +50,5 @@ import UserModal from "../model/UserModal";
      }
     
 }
-let user = new UserController;
-export default user;
+
+export default new UserController;

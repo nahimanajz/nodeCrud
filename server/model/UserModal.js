@@ -29,4 +29,4 @@ const userSchema = ({
       }
 });
 
-export default mongoose.model("UserModal",userSchema);
+export default mongoose.model("users",userSchema);

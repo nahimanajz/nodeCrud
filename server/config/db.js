@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-const URI = "mongodb+srv://jazzo:Karama@123@testcluster1-ljrzi.mongodb.net/test?retryWrites=true&w=majority";
+const URI = "mongodb+srv://jazzo:Karama@123@testcluster1-ljrzi.mongodb.net/Healthier?retryWrites=true&w=majority";
 class DbHelper {
   async connectDb() {
     try {
