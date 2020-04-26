@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+ <html class="no-js">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href= "/public/assets/css/styles.css" rel="stylesheet" type="text/css" />
+        
+    </head>
+    <body>
+        <%- include('header') %>
+        <h1>User Management</h1>
+        <table class="table table-responsive">
+            <tr>
+                <th>No</th>
+                <th>Full names</th>
+                <th>username</th>
+                <th>phone</th>
+                <th>user role</th>
+            </tr>
+            <% users.forEach(function(user) { %>
+             <tr>
+                 <td></td>
+                 <td><%= user.fullnames %></td>
+                 <td><%= user.username %></td>
+                 <td><%= user.phone %></td>
+                 <td><%= user.role %></td>
+             </tr>
+             <% }); %>
+        </table>
+              
+        </p>
+        <%- include('footer') %>
+      
+    </body>
+</html>

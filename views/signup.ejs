@@ -1,0 +1,40 @@
+
+      <%- include('header'); %>
+        <div id="contents">
+         <form action="/register" method="post">
+            <h3 id="form-title">Healthier User Registration</h3>
+             <div class="flex-item">
+                <label>Full names</label>
+                <input type="text" name="fnames">
+             </div>   
+             <div class="flex-item">       
+                <label>Phone</label>
+                <input type="text" name="phone">
+             </div>
+             <div class="flex-item">
+                <label>Username</label>
+                <input type="text" name="username">
+             </div>    
+             <div class="flex-item">                           
+                <label>Password</label>
+                <input type="text" name="password">
+             </div>
+             <div class="flex-item">                           
+               <label>user type</label>
+               <select name="role" id="role">
+                  <option>Nurse</option>
+                  <option>Doctor</option>
+                  <option>patient</option>
+
+               </select>
+            </div>
+             <div class="flex-item">                           
+                <label></label>
+                <input type="submit" value="signup">
+             </div>
+         </form>
+      </div>
+   <%- include('footer') %>
+        <script src="/public/assets/js/formElement.js"></script>
+    </body>
+</html>
