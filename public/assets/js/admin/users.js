@@ -51,4 +51,6 @@ $(document).ready(function () {
     $('#table1').DataTable({
        pageLength:3
     });
-});
+
+    //retrieve data on tr
+});    

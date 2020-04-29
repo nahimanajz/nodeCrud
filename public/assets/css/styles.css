@@ -28,7 +28,7 @@ ul li a,ul li a:hover{
        font-weight: bolder;
        padding: 5px;                
    }
-   form {
+   form.signup {
       margin:2px 100px;
       border-left: 3px solid green;
       padding: 1px 0 30px 20px;
