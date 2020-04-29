@@ -1,8 +1,18 @@
-import UserModal from "../model/UserModal"; 
+// import UserModal from "../model/UserModal"; 
+const UserModal = require("../model/UserModal");
  class UserController {
      getUser(req, res) {       
          return res.render('profile', {person: req.params.id});
      }
+    async getAllUsers(req, res) {       
+        try {
+            const users = await UserModal.find();
+            return res.render('users', {users: users});
+        }catch(error){
+            console.log(error.message);
+        }
+        
+    }
      signup(req, res) {
         return res.render('signup');
      }
@@ -40,9 +50,8 @@ import UserModal from "../model/UserModal";
                 });
              await user.save().then(doc => {
                         console.log(doc);                 
-             });
-            const users = await UserModal.find();
-            return res.status(200).render('users',{users:users, msg: 'User registered'});      
+             });            
+            return res.redirect('/users');      
        }catch(err){
            console.log(err.message);
            return res.status(500).json({ msg:'Error in saving user'});     
@@ -50,5 +59,5 @@ import UserModal from "../model/UserModal";
      }
     
 }
-
-export default new UserController;
+module.exports = new UserController;
+// export default new UserController;

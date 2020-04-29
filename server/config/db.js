@@ -1,4 +1,5 @@
-import mongoose from "mongoose";
+// import mongoose from "mongoose";
+const mongoose = require("mongoose");
 const URI = "mongodb+srv://jazzo:Karama@123@testcluster1-ljrzi.mongodb.net/Healthier?retryWrites=true&w=majority";
 class DbHelper {
   async connectDb() {
@@ -14,4 +15,5 @@ class DbHelper {
     }
   }
 }
-export default new DbHelper;
+// export default new DbHelper;
+module.exports = new DbHelper;
