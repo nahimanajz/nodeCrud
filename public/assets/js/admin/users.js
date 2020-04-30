@@ -3,18 +3,18 @@ $(document).ready(function () {
         "lengthMenu": [-1,10,25,50,"all"]
     });
   
-    //retrieve data on tr
+    
     $("#updateUser").click((e)=>{
         e.preventDefault();
-        const data ={ phone: $('#phone').val(),fullnames: $('#fullnames').val(),username:$('#username').val(),role:$("#phone").val()}
+        const data ={_id:$("#_id").val(),phone: $('#phone').val(),fullnames: $('#fullnames').val(),username:$('#username').val(),role:$("#role").val()}
         $.ajax({
             method: "PUT",
-            url:"/user/"+$('#phone').val(),
+            url:"/user/"+data._id,
             serverSide: true,
             type:"json",
             data: data,
             success:(data) => {
-            $.each(data.user,(values, index)=>{
+            $.each(data.user,(index, values)=>{
                  console.log(values);
             });
             $('#table1').DataTable().ajax.reload();

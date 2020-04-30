@@ -3,26 +3,36 @@
         <table id="table1" class="table table-stripped">
             <thead>
                 <tr>
-                    <th>id</th>
+                    <th>No</th>
                     <th>Name</th>
                     <th>Username</th>
                     <th>phone</th>
                     <th>role</th>
                     <th>Creation Date</th>
-                    <th>Action</th>
+                    <th style="display:none">id</th>
+                    <th colspan="2">Action</th>
                 </tr>
             </thead>
             <tbody>
                 <% users.forEach(function(user,index) { %>
                     <tr>
-                        <td class="id"><%= index+1 %> </td>
+                        <td><%= index+1 %> </td>
                         <td><%= user.fullnames %></td>
                         <td><%= user.username %></td>
                         <td><%= user.phone %></td>
                         <td><%= user.role %></td>
                         <td><%= user.createdAt %></td>
+                        <td style="display: none;"><%= user._id %></td>
                     
-                        <td><button class="btn btn-warning" id="update" data-toggle="modal" data-target="#myModal">Edit</button></td>
+                        <td>
+                            <button class="btn btn-warning" id="update" data-toggle="modal" data-target="#myModal">Edit </button>
+                        </td>
+                        <td>
+                                    <!-- <a href="#user-id=<%= user._id%>"class="btn btn-danger remove" data-toggle="modal" data-target="#deleteModal">Delete </a> -->
+                                    <a href="#user-id=<%= user._id%>"class="btn btn-danger remove"><%= user._id%> </a>
+                        </td>
+
+
                 
                     </tr>
                     <% }); %>
@@ -35,7 +45,12 @@
     <%- include('BSModals/user.ejs'); %> 
 </html>
 <script type="text/javascript">
-$(document).ready(()=>{ 
+$(document).ready(()=>{
+    
+    $('.btn.btn-danger.remove').click((e)=>{
+      e.preventDefault();
+    
+    });
     $(".btn.btn-warning").click(function (e) {
         e.preventDefault();
         const values = [];
@@ -45,8 +60,10 @@ $(document).ready(()=>{
         $("#fullnames").val(values[1]);
         $('#username').val(values[2]);
         $('#phone').val(values[3]);
-        $('#role').html(`<option>${values[4]}</option>`);       
-    });
+        $('#role').html(`<option>${values[4]}</option>`);  
+        $("#_id").val(values[6]);
+
+    });   
 });
 </script>
 

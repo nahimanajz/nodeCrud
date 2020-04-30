@@ -3,12 +3,19 @@ const UserModal = require("../model/UserModal");
  class UserController {
      async updateUser(req, res) {       
         try{ 
-           //const user = await UserModal.findOneAndUpdate({phone:req.params.phone},(req.body))
-           console.log(req.body); 
-           console.log(req.params.phone);
-           //if(user){
+            const user = await UserModal.findOneAndUpdate({_id:req.params._id},
+                {
+                    $set:
+                     {
+                         fullnames:req.body.fullnames,
+                         username: req.body.username,
+                         phone: req.body.phone,
+                         role: req.body.role
+                        }
+                    });
+           console.log(user); 
            return res.status(200).json({
-               user: req.body
+               user: user
            });
         // }  
         }catch(error){

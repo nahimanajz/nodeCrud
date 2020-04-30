@@ -4,7 +4,7 @@ const express = require("express");
 const user = require("../controller/UserController");
 const route = express.Router();
 
-route.put('/user/:phone', user.updateUser);
+route.put('/user/:_id', user.updateUser);
 route.get('/users', user.getAllUsers); 
 
 route.get('/user/signup', user.signup);
