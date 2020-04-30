@@ -1,7 +1,19 @@
 // import UserModal from "../model/UserModal"; 
 const UserModal = require("../model/UserModal");
  class UserController {
-     getUser(req, res) {       
+     async updateUser(req, res) {       
+        try{ 
+           //const user = await UserModal.findOneAndUpdate({phone:req.params.phone},(req.body))
+           console.log(req.body); 
+           console.log(req.params.phone);
+           //if(user){
+           return res.status(200).json({
+               user: req.body
+           });
+        // }  
+        }catch(error){
+            console.log(error.message)
+        } 
          return res.render('profile', {person: req.params.id});
      }
     async getAllUsers(req, res) {       

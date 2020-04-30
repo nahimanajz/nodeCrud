@@ -1,56 +1,28 @@
-/*
-var dataTable = $("#user_data").dataTable({
-    "processing":true,
-    "serverSide":true,
-    "order":[],
-    "ajax":{
-        url:"/users",
-        type:"post"
-    },
-    "columnDefs":[
-        {
-         "targets":[0, 3, 4],
-         "orderable":false,
-        },
-       ],
-});
-//update
-$('#user_form').on("submit",(event)=>{
-event.preventDefault();
-$.ajax({
-  url:"/user/edit"+$(this).attr("_id"),
-  method:'POST',
-  data: new FormData(this),
-  contentType:false,
-  processData:false,
-  success: (data)=>{
-      alert(data);
-      $("#user_form")[0].reset();
-      $("#userModal").modal('hide');
-      dataTable.ajax.reload();
-  }
-});
-});
-//delete
-$(".delete").on('click',()=>{
- if(confirm("Are you sure you want to delete ?")){
-    $.ajax({
-        url:'user/delete'+$(this).attr("_id"),
-        method: 'delete',
-        success: (data) => {
-         alert(data);
-         dataTable.ajax.reload();
-        } 
-    });
- } else {
-     return false;
- }
- 
-}); */
 $(document).ready(function () {
-    $('#table1').DataTable({
-       pageLength:3
+   $('#table1').DataTable({
+        "lengthMenu": [-1,10,25,50,"all"]
     });
-
+  
     //retrieve data on tr
+    $("#updateUser").click((e)=>{
+        e.preventDefault();
+        const data ={ phone: $('#phone').val(),fullnames: $('#fullnames').val(),username:$('#username').val(),role:$("#phone").val()}
+        $.ajax({
+            method: "PUT",
+            url:"/user/"+$('#phone').val(),
+            serverSide: true,
+            type:"json",
+            data: data,
+            success:(data) => {
+            $.each(data.user,(values, index)=>{
+                 console.log(values);
+            });
+            $('#table1').DataTable().ajax.reload();
+            },
+            error:(xhr, message, status) => {
+              console.log(`xhr: ${xhr} message: ${message} status: ${status}`);
+    ;        }
+        });
+    });
+    
 });    

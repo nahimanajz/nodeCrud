@@ -32,18 +32,21 @@
         
     </body>
     <%- include('footer') %> 
-
+    <%- include('BSModals/user.ejs'); %> 
 </html>
-<%- include('BSModals/user.ejs'); %> 
 <script type="text/javascript">
 $(document).ready(()=>{ 
     $(".btn.btn-warning").click(function (e) {
         e.preventDefault();
-        $(this).closest('tr').find('td').each(function() {
-            var textval = $(this).text(); // this will be the text of each <td>
-             console.log(textval);
-             
-            });
+        const values = [];
+        $(this).closest('tr').find('td').each(function() {           
+            values.push($(this).text());                            
+        });
+        $("#fullnames").val(values[1]);
+        $('#username').val(values[2]);
+        $('#phone').val(values[3]);
+        $('#role').html(`<option>${values[4]}</option>`);       
     });
 });
 </script>
+
