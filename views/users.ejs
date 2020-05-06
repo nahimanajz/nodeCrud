@@ -1,40 +1,69 @@
-<!DOCTYPE html>
- <html class="no-js">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href= "/public/assets/css/styles.css" rel="stylesheet" type="text/css" />
-        
-    </head>
-    <body>
-        <%- include('header') %>
-        <h1>User Management</h1>
-        <table class="table table-responsive">
-            <tr>
-                <th>No</th>
-                <th>Full names</th>
-                <th>username</th>
-                <th>phone</th>
-                <th>user role</th>
-            </tr>
-            <% users.forEach(function(user) { %>
-             <tr>
-                 <td><%= user._id %> </td>
-                 <td><%= user.fullnames %></td>
-                 <td><%= user.username %></td>
-                 <td><%= user.phone %></td>
-                 <td><%= user.role %></td>
-                 <td><%= user.createAt %></td>
+        <%- include('header'); %>
+         <div class="container mt-5"> 
+        <table id="table1" class="table table-stripped">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Name</th>
+                    <th>Username</th>
+                    <th>phone</th>
+                    <th>role</th>
+                    <th>Creation Date</th>
+                    <th style="display:none">id</th>
+                    <th colspan="2">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% users.forEach(function(user,index) { %>
+                    <tr>
+                        <td><%= index+1 %> </td>
+                        <td><%= user.fullnames %></td>
+                        <td><%= user.username %></td>
+                        <td><%= user.phone %></td>
+                        <td><%= user.role %></td>
+                        <td><%= user.createdAt %></td>
+                        <td style="display: none;"><%= user._id %></td>
+                    
+                        <td>
+                            <button class="btn btn-warning" id="update" data-toggle="modal" data-target="#myModal">Edit </button>
+                        </td>
+                        <td>
+                                    <!-- <a href="#user-id=<%= user._id%>"class="btn btn-danger remove" data-toggle="modal" data-target="#deleteModal">Delete </a> -->
+                                    <a href="#user-id=<%= user._id%>"class="btn btn-danger remove"><%= user._id%> </a>
+                        </td>
 
-             </tr>
-             <% }); %>
+
+                
+                    </tr>
+                    <% }); %>
+            </tbody>
         </table>
-              
-        </p>
-        <%- include('footer') %>
-      
+    </div>
+        
     </body>
+    <%- include('footer') %> 
+    <%- include('BSModals/user.ejs'); %> 
 </html>
+<script type="text/javascript">
+$(document).ready(()=>{
+    
+    $('.btn.btn-danger.remove').click((e)=>{
+      e.preventDefault();
+    
+    });
+    $(".btn.btn-warning").click(function (e) {
+        e.preventDefault();
+        const values = [];
+        $(this).closest('tr').find('td').each(function() {           
+            values.push($(this).text());                            
+        });
+        $("#fullnames").val(values[1]);
+        $('#username').val(values[2]);
+        $('#phone').val(values[3]);
+        $('#role').html(`<option>${values[4]}</option>`);  
+        $("#_id").val(values[6]);
+
+    });   
+});
+</script>
+

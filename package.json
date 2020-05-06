@@ -4,7 +4,8 @@
   "description": "This is crud application of Nodejs and Ejs templating engine",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon --require babel-core/register --require babel-polyfill --exit ./index.js"
+    "start": "nodemon --require babel-core/register --require babel-polyfill  ./index.js",
+    "build": "nodemon ./index.js"
   },
   "repository": {
     "type": "git",
@@ -22,6 +23,7 @@
     "babel-preset-env": "^1.7.0",
     "babel-register": "^6.26.0",
     "body-parser": "^1.19.0",
+    "datatables": "^1.10.18",
     "dotenv": "^8.2.0",
     "ejs": "^3.0.2",
     "express": "^4.17.1",

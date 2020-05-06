@@ -1,7 +1,7 @@
 //const users = [];
 //export default users;
-import mongoose from "mongoose";
-
+//import mongoose from "mongoose";
+const mongoose = require("mongoose");
 const userSchema = ({
     fullnames: {
         type: String,
@@ -29,4 +29,5 @@ const userSchema = ({
       }
 });
 
-export default mongoose.model("users",userSchema);
+//export default mongoose.model("users",userSchema);
+module.exports = mongoose.model("users",userSchema);
